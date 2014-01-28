@@ -6,9 +6,11 @@
 
 	<link rel="stylesheet" href="css/metro-bootstrap.css">
 	<link rel="stylesheet" href="css/metro-bootstrap-responsive.css">
+	<link rel="stylesheet" href="css/prettify.css">
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery.widget.min.js"></script>
 	<script src="js/metro.min.js"></script>
+	<script src="js/prettify.js"></script>
 </head>
 <body class="metro">
 
@@ -19,10 +21,10 @@
 					<h2 class="fg-white">Create</h2>
 				</div>
 				<div class="span4 bg-red padding20 text-center">
-					<h2 class="fg-white">Just For Fun</h2>
+					<h2 class="fg-white">Design</h2>
 				</div>
 				<div class="span4 bg-green padding20 text-center">
-					<h2 class="fg-white">Enjoying</h2>
+					<h2 class="fg-white">Think</h2>
 				</div>
 			</div>
 		</div>
@@ -44,31 +46,72 @@
 
 				</div>
 				<div class="span4">
-					<div class="padding20 tile double live " data-role="live-tile" data-effect="slideRight">
-						<div class="tile-content image">
-							<img src="images/keyboard.jpg">
+					<div class="carousel" id="carousel1">
+						<div class="slide">
+							<img src="images/keyboard.jpg" class="cover1" />
 						</div>
-						<div class="tile-content image">
-							<img src="images/keyboard.jpg">
+						<div class="slide">
+							<img src="images/angel.jpg" class="cover1" />
 						</div>
-						<div class="tile-content image">
-							<img src="images/keyboard.jpg">
+						<div class="slide">
+							<img src="images/dc.jpg" class="cover1" />
 						</div>
-						<div class="tile-content image">
-							<img src="images/keyboard.jpg">
-						</div>						
-						<div class="tile-status bg-dark opacity">
-							<span class="label">effect: slideRight</span>
-						</div>
+						<a class="controls left"><i class="icon-arrow-left-3"></i></a>
+						<a class="controls right"><i class="icon-arrow-right-3"></i></a>
 					</div>
+					<div class="padding20 bg-transparent">
+					<img src="images/logo.png" class="cover1" />
+					</div>
+					<script>
+					$(function(){
+						$("#carousel1").carousel({
+							height: 200
+						});
+					})
+					</script>
+
+
 				</div>
-				<div class="span4 bg-green padding20 text-center">
-					<h2 class="fg-white">Enjoying</h2>
+				<div class="span4 ">
+					<pre class="prettyprint linenums lang-cpp">
+int ledPort=13;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(ledPort,OUTPUT);
+}
+
+int serialData;
+void loop() {
+  String inString = "";
+  while (Serial.available()> 0)
+  {
+    int inChar = Serial.read();
+    if (isDigit(inChar)) {
+      inString += (char)inChar; 
+    }
+    serialData=inString.toInt();
+    Serial.print(serialData);
+  }
+  if(serialData==1){
+    digitalWrite(ledPort,HIGH);
+  }else{
+    digitalWrite(ledPort,LOW);
+  }
+}</pre>
 				</div>
+
 			</div>
 		</div>
 	</div>
 
+	<script type="text/javascript">
+	(function(jQuery){
+		jQuery( document ).ready( function() {
+			prettyPrint();
+		} );
+	}(jQuery))
+	</script>
 
 </body>
 </html>
