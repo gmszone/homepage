@@ -1,117 +1,34 @@
-<!DOCTYPE html>
-<html>
+
+<!doctype html>
+<html lang="en" ng-app="blogposts">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title>Phodal's New Homepage</title>
+  <script src="js/angular.min.js"></script>
+  <script>
+	var blogposts = angular.module('blogposts', []);
 
-	<link rel="stylesheet" href="css/metro-bootstrap.css">
-	<link rel="stylesheet" href="css/metro-bootstrap-responsive.css">
-	<link rel="stylesheet" href="css/prettify.css">
-	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery.widget.min.js"></script>
-	<script src="js/metro.min.js"></script>
-	<script src="js/prettify.js"></script>
+	blogposts.controller('postlistCtrl', function($scope, $http) {
+      $http.get('http://api.phodal.net/blog/page/1').success(function(data) {
+          $scope.posts = data;
+      });
+	});
+  </script>
 </head>
-<body class="metro">
+<body ng-controller="postlistCtrl">
 
-	<div class="container">
-		<div class="grid fluid">
-			<div class="row">
-				<div class="span4 bg-amber padding20 text-center">
-					<h2 class="fg-white">Create</h2>
-				</div>
-				<div class="span4 bg-red padding20 text-center">
-					<h2 class="fg-white">Design</h2>
-				</div>
-				<div class="span4 bg-green padding20 text-center">
-					<h2 class="fg-white">Think</h2>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="container">
-		<div class="grid fluid">
-			<div class="row">
-				<div class="span4 bg-cyan padding20 text-center">
-					<h2 class="fg-white">
-						<h2>青玉案</h2>
-						<p>笔走云汉千里路，唯目送，冬归去。日暖春光，雕窗朱户，独抿清茶苦。</p>
-						<p>天上人间情归处，南北隔，东西默。欲问相思，不问相思，三世与君知。</p>
-
-						<h2>鹧鸪天</h2>
-						<p>昔誓昔盟或可期，东风恨恨卷青丝。相思忍对新醅酒，寂寞怕开却月门。</p>
-						<p>情缱绻，梦依稀。忽惊三月燕归迟。天涯何必歌长恨，为有君心似旧时。</p>
-					</h2>												
-
-				</div>
-				<div class="span4">
-					<div class="carousel" id="carousel1">
-						<div class="slide">
-							<img src="images/keyboard.jpg" class="cover1" />
-						</div>
-						<div class="slide">
-							<img src="images/angel.jpg" class="cover1" />
-						</div>
-						<div class="slide">
-							<img src="images/dc.jpg" class="cover1" />
-						</div>
-						<a class="controls left"><i class="icon-arrow-left-3"></i></a>
-						<a class="controls right"><i class="icon-arrow-right-3"></i></a>
-					</div>
-					<div class="padding20 bg-transparent">
-					<img src="images/logo.png" class="cover1" />
-					</div>
-					<script>
-					$(function(){
-						$("#carousel1").carousel({
-							height: 200
-						});
-					})
-					</script>
-
-
-				</div>
-				<div class="span4 ">
-					<pre class="prettyprint linenums lang-cpp">
-int ledPort=13;
-
-void setup() {
-  Serial.begin(9600);
-  pinMode(ledPort,OUTPUT);
-}
-
-int serialData;
-void loop() {
-  String inString = "";
-  while (Serial.available()> 0)
-  {
-    int inChar = Serial.read();
-    if (isDigit(inChar)) {
-      inString += (char)inChar; 
-    }
-    serialData=inString.toInt();
-    Serial.print(serialData);
-  }
-  if(serialData==1){
-    digitalWrite(ledPort,HIGH);
-  }else{
-    digitalWrite(ledPort,LOW);
-  }
-}</pre>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-	<script type="text/javascript">
-	(function(jQuery){
-		jQuery( document ).ready( function() {
-			prettyPrint();
-		} );
-	}(jQuery))
-	</script>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span10">
+        <ul class="posts">
+          <article ng-repeat="post in posts | orderBy:post.id">
+            <h1>{{post.title}}</h1>
+            <p>{{post.description}}</p>
+          </article>
+        </ul>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>
