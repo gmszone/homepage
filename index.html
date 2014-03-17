@@ -11,15 +11,8 @@
   var blogposts = angular.module('blogposts', []);
 
   blogposts.controller('postlistCtrl', function($scope, $http, $sce) {
-      $http.get('http://0.0.0.0:10086/blog/page/1').success(function(data) {
+      $http.get('http://api.phodal.net/blog/page/1').success(function(data) {
           $scope.posts = data;
-      });
-      $http.get('http://0.0.0.0:10086/blog/1').success(function(data) {
-          $scope.post1 = data;
-          console.log(data.content);
-          $scope.deliberatelyTrustDangerousSnippet = function() {
-            return $sce.trustAsHtml(data.content);
-          };
       });
   });
   </script>
@@ -59,23 +52,9 @@
                     </div>
                 </section>
             </div>
-            <div class="footer">
-                <div class="pure-menu pure-menu-horizontal pure-menu-open">
-                    <ul>
-                        <li><a href="http://purecss.io/">About</a></li>
-                        <li><a href="http://twitter.com/yuilibrary/">Twitter</a></li>
-                        <li><a href="http://github.com/yui/pure/">GitHub</a></li>
-                    </ul>
-                </div>
-            </div>
         </div>
     </div>
 </div>                
-
-<!--         <article>
-          <div ng-bind-html="deliberatelyTrustDangerousSnippet()"></div>
-        </article>
- -->
 
 </body>
 </html>
