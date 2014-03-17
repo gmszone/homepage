@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="en" ng-app="blogposts" itemscope itemtype="http://schema.org/Article">
+<html lang="en" ng-app="blogposts" >
 <head>
   <meta charset="utf-8">
   <title>Phodal's New Homepage</title>
@@ -15,11 +15,23 @@
 	});
   </script>
 </head>
-<body ng-controller="postlistCtrl">
+<body ng-controller="postlistCtrl" itemscope itemtype="http://schema.org/Product">
 
 <span itemprop="name">Phodal</span>
 <span itemprop="description">This is a test</span>
-<img itemprop="image" src="www.phodal.com">
+<!-- Place this tag where you want the share button to render. -->
+<div class="g-plus" data-action="share" data-height="24"></div>
+
+<!-- Place this tag after the last share tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'zh-CN'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/platform.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
 
   <div class="container-fluid">
     <div class="row-fluid">
