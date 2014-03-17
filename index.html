@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="en" ng-app="blogposts">
+<html lang="en" ng-app="blogposts" itemscope itemtype="http://schema.org/Article">
 <head>
   <meta charset="utf-8">
   <title>Phodal's New Homepage</title>
@@ -16,6 +16,10 @@
   </script>
 </head>
 <body ng-controller="postlistCtrl">
+
+<span itemprop="name">Phodal</span>
+<span itemprop="description">This is a test</span>
+<img itemprop="image" src="www.phodal.com">
 
   <div class="container-fluid">
     <div class="row-fluid">
