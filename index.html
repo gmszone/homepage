@@ -1,36 +1,81 @@
 
 <!doctype html>
-<html lang="en" ng-app="blogposts" itemscope itemtype="http://schema.org/Blog">
+<html lang="en" ng-app="blogposts">
 <head>
   <meta charset="utf-8">
-
-  <meta itemprop="name" content="Phodal&#39;s Blog">
-  <meta itemprop="description" content="Phodal&#39;s new homepage">
-  <meta itemprop="image" content="https://1.gravatar.com/avatar/3f7d7184e4a363bfddfd11d3ab1af304?d=https%3A%2F%2Fidenticons.github.com%2Fdc183c71d625aa2c083399b83e6bee5e.png&amp;r=x&amp;s=460">  
   <title>Phodal's New Homepage</title>
-  <script src="js/angular.min.js"></script> 
-</head>
-<body ng-controller="postlistCtrl" itemscope itemtype="http://schema.org/Blog">
-  <div class="container-fluid">
-    <div class="row-fluid">
-      <div class="span10">
-        <ul class="posts">
-          <article ng-repeat="post in posts | orderBy:post.id">
-            <h1 itemprop="name">{{post.title}}</h1>
-            <p itemprop="description">{{post.description}}</p>
-          </article>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure-min.css">
+  <link rel="stylesheet" href="css/blog.css">
+  <script src="js/angular.min.js"></script>
   <script>
   var blogposts = angular.module('blogposts', []);
 
-  blogposts.controller('postlistCtrl', function($scope, $http) {
-    $http.get('http://api.phodal.net/blog/page/1').success(function(data) {
-      $scope.posts = data;
-    });
+  blogposts.controller('postlistCtrl', function($scope, $http, $sce) {
+      $http.get('http://0.0.0.0:10086/blog/page/1').success(function(data) {
+          $scope.posts = data;
+      });
+      $http.get('http://0.0.0.0:10086/blog/1').success(function(data) {
+          $scope.post1 = data;
+          console.log(data.content);
+          $scope.deliberatelyTrustDangerousSnippet = function() {
+            return $sce.trustAsHtml(data.content);
+          };
+      });
   });
-  </script>  
+  </script>
+</head>
+<body ng-controller="postlistCtrl">
+
+<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-med-1-4">
+        <div class="header">
+            <hgroup>
+                <h1 class="brand-title">Phodal Huang</h1>
+                <h2 class="brand-tagline">Simple & Stupid</h2>
+            </hgroup>
+
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a class="pure-button" href="/">Home</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+<div class="content pure-u-1 pure-u-med-3-4">
+        <div>
+            <div class="posts" ng-repeat="post in posts">
+                <h1 class="content-subhead">Post</h1>
+                <section class="post">
+                    <header class="post-header">
+                        <h2 class="post-title">{{post.title}}</h2>
+                        <p class="post-meta">
+                            By <a href="#" class="post-author">Phodal Huang</a> under <a class="post-category post-category-design" href="#">{{post.keywords}}</a>
+                        </p>
+                    </header>
+                    <div class="post-description">
+                        <p>{{post.description}}</p>
+                    </div>
+                </section>
+            </div>
+            <div class="footer">
+                <div class="pure-menu pure-menu-horizontal pure-menu-open">
+                    <ul>
+                        <li><a href="http://purecss.io/">About</a></li>
+                        <li><a href="http://twitter.com/yuilibrary/">Twitter</a></li>
+                        <li><a href="http://github.com/yui/pure/">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>                
+
+<!--         <article>
+          <div ng-bind-html="deliberatelyTrustDangerousSnippet()"></div>
+        </article>
+ -->
+
 </body>
 </html>
