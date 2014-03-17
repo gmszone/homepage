@@ -19,5 +19,14 @@
       </div>
     </div>
   </div>
+  <script>
+  var blogposts = angular.module('blogposts', []);
+
+  blogposts.controller('postlistCtrl', function($scope, $http) {
+    $http.get('http://api.phodal.net/blog/page/1').success(function(data) {
+      $scope.posts = data;
+    });
+  });
+  </script>  
 </body>
 </html>
