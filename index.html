@@ -15,11 +15,8 @@
 	});
   </script>
 </head>
-<body ng-controller="postlistCtrl" itemscope itemtype="http://schema.org/Product">
+<body ng-controller="postlistCtrl" itemscope itemtype="http://schema.org/Blog">
 
-<span itemprop="name">Phodal</span>
-<span itemprop="description">This is a test</span>
-<!-- Place this tag where you want the share button to render. -->
 <div class="g-plus" data-action="share" data-height="24"></div>
 
 <!-- Place this tag after the last share tag. -->
@@ -38,8 +35,8 @@
       <div class="span10">
         <ul class="posts">
           <article ng-repeat="post in posts | orderBy:post.id">
-            <h1>{{post.title}}</h1>
-            <p>{{post.description}}</p>
+            <h1 itemprop="name">{{post.title}}</h1>
+            <p itemprop="description">{{post.description}}</p>
           </article>
         </ul>
       </div>
