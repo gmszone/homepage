@@ -7,32 +7,6 @@
   <script src="js/angular.min.js"></script> 
 </head>
 <body ng-controller="postlistCtrl" itemscope itemtype="http://schema.org/Blog">
-
-<div class="g-plus" data-action="share" data-height="24"></div>
-
-<!-- Place this tag after the last share tag. -->
-<script type="text/javascript">
-  window.___gcfg = {lang: 'zh-CN'};
-
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/platform.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>
-<button
-  class="g-interactivepost"
-  data-contenturl="http//www.phodal.net"
-  data-contentdeeplinkid="/pages"
-  data-clientid="625695886751-r6srnc0o8do7usqeqeq9i5hqf9hq2ff8.apps.googleusercontent.com"
-  data-cookiepolicy="single_host_origin"
-  data-prefilltext="Engage your users today, create a Google+ page for your business."
-  data-calltoactionlabel="CREATE"
-  data-calltoactionurl="http://plus.google.com/pages/create"
-  data-calltoactiondeeplinkid="/pages/create">
-  Tell your friends
-</button>
-
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="span10">
@@ -45,21 +19,5 @@
       </div>
     </div>
   </div>
-  <script>
-  var blogposts = angular.module('blogposts', []);
-
-  blogposts.controller('postlistCtrl', function($scope, $http) {
-    $http.get('http://api.phodal.net/blog/page/1').success(function(data) {
-      $scope.posts = data;
-    });
-  });
-  </script>
-  <script type="text/javascript">
-  (function() {
-   var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-   po.src = 'https://apis.google.com/js/client:plusone.js';
-   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
- })();
- </script> 
 </body>
 </html>
