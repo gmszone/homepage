@@ -25,7 +25,7 @@
    });
   
   blogposts.controller('postlistCtrl', function($scope, $http, $sce, $route, $routeParams) {
-      $http.get('http://0.0.0.0:10086/blog/page/1').success(function(data) {
+      $http.get('http://api.phodal.net/blog/page/1').success(function(data) {
           $scope.posts = data;
       });
       // $scope.randomcolors = function() {
