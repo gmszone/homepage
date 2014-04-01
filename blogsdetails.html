@@ -1,16 +1,32 @@
 <div class="content pure-u-1 pure-u-med-3-4" ng-controller="blogController">
-        <div>
-            <div class="posts">
-                <h1 class="content-subhead"><a href="http://www.phodal.com/blog/{{post1.slug}}">原网站上查看</a></h1>
-                <section class="post">
-                    <header class="post-header">
-                        <h2 class="post-title">{{post1.title}}</h2>
-                        <p ng-bind-html="deliberatelyTrustDangerousSnippet()">
-                           
-                        </p>
-                    </header>
-                </section>
-            </div>
-        </div>
+  <div>
+    <div class="posts">
+      <h1 class="content-subhead"><a href="http://www.phodal.com/blog/{{post1.slug}}">原网站上查看</a></h1>
+      <section class="post">
+        <header class="post-header">
+          <h2 class="post-title">{{post1.title}}</h2>
+          <p ng-bind-html="deliberatelyTrustDangerousSnippet()">
+
+          </p>
+        </header>
+      </section>
     </div>
-</div>                
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="文章在原站点中的ID" data-title="文章标题" data-url="文章网址"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"phodal"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+  </div>
+</div>
+</div>
