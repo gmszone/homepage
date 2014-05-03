@@ -1028,3 +1028,10 @@ h3 {
         bottom: 0;
     }
 }
+@font-face {
+    font-family:'inconsolata';
+    src:url(Inconsolata.otf) format('opentype');
+}
+body{
+    font-family: 'inconsolata';
+}
