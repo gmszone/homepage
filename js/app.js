@@ -12,7 +12,7 @@
       templateUrl: 'blogsdetails.html',
       controller: 'blogController'
     });
-    $locationProvider.html5Mode(true);
+    // $locationProvider.html5Mode(true);
    });
   
   blogposts.controller('postlistCtrl', function($scope, $http, $sce, $route, $routeParams) {
